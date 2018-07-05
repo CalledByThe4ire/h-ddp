@@ -1,5 +1,5 @@
 // @flow
 
-import game from './game';
+// // import fn from './fn';
 
-export default game;
+// export default fn;
