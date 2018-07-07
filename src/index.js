@@ -1,5 +1,5 @@
 // @flow
 
-// // import fn from './fn';
+import extract from './extract';
 
-// export default fn;
+export default extract;
