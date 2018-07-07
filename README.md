@@ -1,7 +1,3 @@
-### simpleCard.js
+### SimpleCard.js
 
-Реализуйте интерфейс типа `simpleCard`.
-
-### solution.js
-
-Допишите логику работы функции `run`.
+Реализуйте класс `SimpleCard` по аналогии с `PercentCard`.

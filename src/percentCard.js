@@ -1,13 +1,10 @@
-const make = (name, percent) =>
-  (message, health) => {
-    switch (message) {
-      case 'getName':
-        return name;
-      case 'damage':
-        return Math.round(health * (percent / 100));
-      default:
-        return 'undefined method';
-    }
-  };
+export default class PercentCard {
+  constructor(name, percent) {
+    this.name = name;
+    this.percent = percent;
+  }
 
-export default make;
+  damage(health) {
+    return Math.round(health * (this.percent / 100));
+  }
+}

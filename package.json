@@ -36,7 +36,6 @@
   "homepage": "https://github.com/hexlet-boilerplates/nodejs-package#readme",
   "dependencies": {
     "gulp": "^4.0.0",
-    "hexlet-pairs": "^1.0.8",
     "hexlet-pairs-data": "^1.0.8"
   },
   "devDependencies": {
