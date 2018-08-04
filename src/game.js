@@ -8,7 +8,7 @@ const run = (player1, player2, cards, customRandom) => {
       return consList(cons(car(head(log)), `${name1} был убит`), log);
     }
     // BEGIN (write your solution here)
-
+    const card = customRandom(cards);
     // END
     const cardName = car(card);
     const damage = cdr(card)(health2);
@@ -32,5 +32,6 @@ const run = (player1, player2, cards, customRandom) => {
 };
 
 // BEGIN (write your solution here)
-
+export default (cards, rand = random) => (name1, name2) =>
+  run(name1, name2, cards, rand);
 // END
