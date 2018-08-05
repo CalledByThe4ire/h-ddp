@@ -30,42 +30,32 @@ const isPercentCard = card => typeTag(card) === 'PercentCard';
 const run = (player1, player2, cards, customRandom) => {
   const iter = (health1, name1, health2, name2, order, log) => {
     // BEGIN (write your solution here)
-    if (health1 <= 0 || health2 <= 0) {
-      const message = `Игрок '${health1 <= 0 ? name1 : name2}' был убит`;
-      const logInfo = cons(cons(health1, health2), message);
-      return consList(logInfo, log);
+    if (health1 <= 0) {
+      return consList(cons(car(head(log)), `${name1} был убит`), log);
+    }
+    const card = customRandom(cards);
+    let cardName;
+    let damage;
+    if (isSimpleCard(card)) {
+      cardName = getSimpleCardName(card);
+      damage = simpleCardDamage(card);
+    } else if (isPercentCard(card)) {
+      cardName = getPercentCardName(card);
+      damage = percentCardDamage(card, health2);
     }
 
-    const card = customRandom(cards);
-    const cardName = isSimpleCard(card)
-      ? getSimpleCardName(card)
-      : getPercentCardName(card);
+    const newHealth = health2 - damage;
 
-    const cardDamage = isPercentCard(card)
-      ? order % 2 !== 0
-        ? percentCardDamage(card, health2)
-        : percentCardDamage(card, health1)
-      : simpleCardDamage(card);
-
-    const player1Health = order % 2 === 0 ? health1 - cardDamage : health1;
-    const player2Health = order % 2 !== 0 ? health2 - cardDamage : health2;
-
-    const message = `Игрок '${
-      order % 2 !== 0 ? name1 : name2
-    }' применил '${cardName}' против '${
-      order % 2 !== 0 ? name2 : name1
-    }' и нанес урон '${cardDamage}'`;
-
-    const logInfo = cons(cons(player1Health, player2Health), message);
-
-    return iter(
-      player1Health,
-      name1,
-      player2Health,
-      name2,
-      order + 1,
-      consList(logInfo, log),
-    );
+    const message = `Игрок '${name1}' применил '${cardName}'
+      против '${name2}' и нанес урон '${damage}'`;
+    let stats;
+    if (order === 1) {
+      stats = cons(cons(health1, newHealth), message);
+    } else if (order === 2) {
+      stats = cons(cons(newHealth, health1), message);
+    }
+    const newLog = consList(stats, log);
+    return iter(newHealth, name2, health1, name1, order === 1 ? 2 : 1, newLog);
     // END
   };
 
