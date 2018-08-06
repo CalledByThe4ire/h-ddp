@@ -6,5 +6,6 @@ export const getName = self =>
 
 // BEGIN (write your solution here)
 // @flow
-
+export const damage = (self, health) =>
+  getMethod(self, 'damage')(contents(self), health);
 // END

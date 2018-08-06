@@ -7,11 +7,14 @@ let methods = l();
 export const getMethod = (obj, methodName) => {
   // BEGIN (write your solution here)
   // @flow
-
+  let virtualTable = methods;
+  while (car(head(virtualTable)) !== typeTag(obj) && car(cdr(head(virtualTable))) !== methodName) {
+    virtualTable = tail(virtualTable);
+  }
+  return cdr(cdr(head(virtualTable)));
   // END
 };
 
-export const definer = type =>
-  (methodName, f) => {
-    methods = consList(attach(type, cons(methodName, f)), methods);
-  };
+export const definer = type => (methodName, f) => {
+  methods = consList(attach(type, cons(methodName, f)), methods);
+};

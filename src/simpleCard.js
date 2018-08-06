@@ -4,5 +4,13 @@ import { attach } from './type';
 
 // BEGIN (write your solution here)
 // @flow
+const defmethod = definer('SimpleCard');
 
+const make = (name, loss) => attach('SimpleCard', cons(name, loss));
+
+export default make;
+
+defmethod('getName', self => car(self));
+
+defmethod('damage', self => cdr(self));
 // END
