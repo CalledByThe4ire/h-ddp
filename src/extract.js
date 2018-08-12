@@ -3,10 +3,11 @@ import { getAttribute, getName } from './tags';
 
 // BEGIN (write your solution here)
 // @flow
-export default list =>
-  map((element) => {
-    const tagName = getName(element);
-    const attrName = tagName === 'a' || tagName === 'link' ? 'href' : 'src';
-    return getAttribute(attrName, element);
-  }, list);
+const mapping = {
+  img: t => getAttribute('src', t),
+  a: t => getAttribute('href', t),
+  link: t => getAttribute('href', t),
+
+};
+export default tags => map(tag => mapping[getName(tag)](tag), tags);
 // END
