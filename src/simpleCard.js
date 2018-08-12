@@ -1,8 +1,9 @@
 // BEGIN (write your solution here)
 // @flow
-const make = (name, loss) => ({
+const make = (name, damagePoints) => ({
   name,
-  damage: () => loss,
+  damage: () => damagePoints,
 });
+
 export default make;
 // END
