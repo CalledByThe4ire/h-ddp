@@ -1,13 +1,13 @@
 // BEGIN (write your solution here)
 // @flow
 export default class SimpleCard {
-  constructor(name, loss) {
+  constructor(name, damagePoints) {
     this.name = name;
-    this.loss = loss;
+    this.damagePoints = damagePoints;
   }
 
   damage() {
-    return this.loss;
+    return this.damagePoints;
   }
 }
 // END
